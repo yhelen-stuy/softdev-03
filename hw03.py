@@ -1,3 +1,8 @@
+#Helen Ye, Jennifer Zhang
+#SoftDev1 pd7
+#HW03 -- StI/O: Divine your Destiny!
+#2017-09-15
+
 import random
 def read_occupations():
     # Read the file
@@ -21,8 +26,18 @@ def read_occupations():
         csv_dict[fields[0]] = float(fields[1])
     return csv_dict
 
+
 def random_profession(professions):
+  num = random.randint(1,998)
+  for element in professions:
+    #We keep subtracting the percentages until num becomes a negative number: we know that it falls within the range of the specific occupation when its negative
+    num -= professions[element] * 10
+    if num < 0:
+      return element
+  #returns -1 if something went wrong
+  return -1;
 
 occ = read_occupations()
-for x in occ:
-    print x + "," + str(occ[x])
+#for x in occ:
+#    print x + "," + str(occ[x])
+print random_profession(occ)
